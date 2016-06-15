@@ -1,16 +1,21 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of IndexController
+ * 基础控制器
  *
- * @author bh
+ * @author baihua <baihua_2011@163.com>
  */
 class BaseController extends CController {
-    //put your code here
+
+    public $layout = '/layouts/main';
+    public $data = array();
+
+    public function init() {
+        parent::init();
+        $host = Yii::app()->request->getHostInfo();
+        $this->data['css_url'] = $host . Yii::app()->theme->getBaseUrl() . '/static/css';
+        $this->data['js_url'] = $host . Yii::app()->theme->getBaseUrl() . '/static/js';
+        $this->data['images_url'] = $host . Yii::app()->theme->getBaseUrl() . '/static/images';
+    }
+
 }
