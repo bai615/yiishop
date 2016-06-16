@@ -11,12 +11,12 @@ return array(
       'password' => '',
       'charset' => 'utf8',
      */
-    'connectionString' => 'mysql:host=127.0.0.1:3306;dbname=iweb44',
+    'connectionString' => 'mysql:host=127.0.0.1:3306;dbname=yiishop',
     'emulatePrepare' => true,
     'username' => 'root',
     'password' => 'root',
     'charset' => 'utf8',
-    'tablePrefix' => 'iwebshop_',
+    'tablePrefix' => 'yiishop_',
     //显示每个sql语句与运行的时间
     'enableProfiling' => true,
 );
