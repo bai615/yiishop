@@ -46,18 +46,20 @@ return array(
         'widgetFactory'=>array(
             'class'=>'CWidgetFactory',
         ),
+        
+        'goods'=>array(
+            'class'=>'GoodsComponent',//加载类库
+        ),
 
 		// uncomment the following to enable URLs in path-format
-		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
+            'showScriptName'=>false,    // 将代码里链接的index.php隐藏掉。  
+            'urlSuffix'=>'.html',  
 			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                'item_<id:\d+>'=>array('home/products','urlSuffix'=>'.html'), 
 			),
 		),
-		*/
 
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
