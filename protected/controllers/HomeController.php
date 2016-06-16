@@ -35,27 +35,58 @@ class HomeController extends BaseController {
                 $goodsInfo['brand_name'] = $brandInfo['name'];
             }
         }
-        //商品图片
-        $goodsPhotoModel = new GoodsPhoto();
-        $goodsPhotoList = $goodsPhotoModel->findAll(array(
-            'select' => array('p.id', 'p.img'),
-            'condition' => 'g.goods_id=:goodsId',
-            'params' => array(':goodsId' => $goodsId)
+        //获取商品分类
+        $categoryModel = new CategoryExtend();
+        $categoryInfo = $categoryModel->find(array(
+            'select' => array('c.id'),
+            'condition' => 'ca.goods_id = :goodsId',
+            'params' => array(':goodsId' => $goodsId),
+            'join' => 'left join {{category}} c on c.id=ca.category_id',
+            'alias' => 'ca',
+            'order' => 'ca.id desc'
         ));
-        $tb_goods_photo = new IQuery('goods_photo_relation as g');
-        $tb_goods_photo->fields = 'p.id AS photo_id,p.img ';
-        $tb_goods_photo->join = 'left join goods_photo as p on p.id=g.photo_id ';
-        $tb_goods_photo->where = ' g.goods_id=' . $goods_id;
-        $goods_info['photo'] = $tb_goods_photo->find();
-        foreach ($goods_info['photo'] as $key => $val) {
-            //对默认第一张图片位置进行前置
-            if ($val['img'] == $goods_info['img']) {
-                $temp = $goods_info['photo'][0];
-                $goods_info['photo'][0] = $val;
-                $goods_info['photo'][$key] = $temp;
+
+
+        /**
+         * 获取商品分类，第2方案
+          $condition = 'ca.goods_id = :goodsId';
+          $params[':goodsId'] = $goodsId;
+          $criteria = new CDbCriteria;
+          $criteria->condition = $condition;
+          $criteria->params = $params;
+          $criteria->order = 'ca.id desc';
+          $criteria->with = 'r_category';
+          $criteria->alias = 'ca';
+          $categoryInfo = $categoryModel->find($criteria);
+         */
+        $goodsInfo['category_id'] = empty($categoryInfo) ? 0 : $categoryInfo['id'];
+
+        //商品图片
+        $goodsPhotoModel = new GoodsPhotoRelation();
+        $goodsPhotoList = $goodsPhotoModel->findAll(array(
+            'select' => array('p.id as photo_id', 'p.img'),
+            'condition' => 'g.goods_id=:goodsId',
+            'params' => array(':goodsId' => $goodsId),
+            'alias' => 'g',
+            'join' => 'left join {{goods_photo}} p on p.id=g.photo_id'
+        ));
+        if ($goodsPhotoList) {
+            $goodsPhotoArr = array();
+            foreach ($goodsPhotoList as $key => $value) {
+                $goodsPhotoArr[$key]['img'] = $value['img'];
+                $goodsPhotoArr[$key]['photo_id'] = $value['photo_id'];
+                //对默认第一张图片位置进行前置
+                if ($value['img'] == $goodsInfo['img']) {
+                    $temp = $goodsPhotoArr[0];
+                    $goodsPhotoArr[0]['img'] = $value['img'];
+                    $goodsPhotoArr[0]['photo_id'] = $value['photo_id'];
+                    $goodsPhotoArr[$key] = $temp;
+                }
             }
+            $goodsInfo['photo'] = $goodsPhotoArr;
         }
-        //pprint($goodsInfo);
+
+
         $this->render('products');
     }
 

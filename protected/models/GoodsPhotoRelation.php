@@ -6,6 +6,8 @@
  * @author baihua <baihua_2011@163.com>
  */
 class GoodsPhotoRelation extends CActiveRecord {
+    
+    public $img;//图片路径
 
     /**
      * model 的静态方法

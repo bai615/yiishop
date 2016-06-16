@@ -8,6 +8,16 @@
 class Category extends CActiveRecord {
 
     /**
+     * 关联关系
+     * @return type
+     */
+    public function relations() {
+        return array(
+            'r_categoryExtend' => array(self::HAS_MANY, 'CategoryExtend', 'category_id'),
+        );
+    }
+
+    /**
      * model 的静态方法
      * @param type $className
      * @return type

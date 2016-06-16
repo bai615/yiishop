@@ -8,6 +8,8 @@
 class Goods extends CActiveRecord {
 
     public $brand_name; //商品品牌名称
+    public $category_id; //分类ID
+    public $photo; //商品图片集
 
     /**
      * model 的静态方法

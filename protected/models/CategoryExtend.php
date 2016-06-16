@@ -5,7 +5,17 @@
  *
  * @author baihua <baihua_2011@163.com>
  */
-class CategoryExtend {
+class CategoryExtend extends CActiveRecord {
+    
+    /**
+     * 关联关系
+     * @return type
+     */
+    public function relations() {
+        return array(
+            'r_category' => array(self::BELONGS_TO, 'Category', 'category_id'),
+        );
+    }
 
     /**
      * model 的静态方法
