@@ -30,7 +30,7 @@
                         <p class="goods_market_price">市场价：<s>￥<?php echo $info['market_price']; ?></s></p>
                         <p class="goods_operate">
                             <!--<a class="contrast" href="javascript:;"><i></i>对比</a>-->
-                            <a class="buy" href="javascript:;">购买</a>
+                            <a class="buy" href="javascript:;"><i>￥</i>购买</a>
                             <a class="focus" href="javascript:;"><i></i>收藏</a>
                             <a class="addcart" href="javascript:;"><i></i>加入购物车</a>
                         </p>

@@ -87,7 +87,24 @@ class HomeController extends BaseController {
         }
 
 
-        $this->render('products');
+
+        //获得商品的价格区间
+        $productModel = new Products();
+        $productList = $productModel->find(array(
+            'select' => array('max(sell_price) as maxSellPrice', 'min(sell_price) as minSellPrice', 'max(market_price) as maxMarketPrice', 'min(market_price) as minMarketPrice'),
+            'condition' => 'goods_id=:goodsId',
+            'params' => array(':goodsId' => $goodsId)
+        ));
+        if ($productList) {
+            $priceArea['maxSellPrice'] = $productList['maxSellPrice'];
+            $priceArea['minSellPrice'] = $productList['minSellPrice'];
+            $priceArea['minMarketPrice'] = $productList['minMarketPrice'];
+            $priceArea['maxMarketPrice'] = $productList['maxMarketPrice'];
+            $goodsInfo['price_area'] = $priceArea;
+        }
+
+//        dprint($goodsInfo);
+        $this->render('products', array('goodsInfo' => $goodsInfo));
     }
 
 }

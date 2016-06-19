@@ -17,12 +17,9 @@
 
         <link href="<?php echo $this->data['css_url']; ?>/easyshop.css" rel="stylesheet">
 
-        <!-- Custom styles for this template -->
-        <link href="<?php echo $this->data['css_url']; ?>/theme.css" rel="stylesheet">
-
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-        <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+        <!--[if lt IE 9]><script src="<?php echo $this->data['js_url']; ?>/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="<?php echo $this->data['js_url']; ?>/ie-emulation-modes-warning.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -33,9 +30,8 @@
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
         <script src="<?php echo $this->data['js_url']; ?>/jquery.min.js"></script>
         <script src="<?php echo $this->data['js_url']; ?>/bootstrap.min.js"></script>
-        <script src="../../assets/js/docs.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="<?php echo $this->data['js_url']; ?>/ie10-viewport-bug-workaround.js"></script>
     </head>
 
     <body role="">
@@ -54,7 +50,7 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="/">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                         <li class="dropdown">
