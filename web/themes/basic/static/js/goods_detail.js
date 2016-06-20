@@ -86,3 +86,11 @@ function checkBuyNums()
     //运费查询
     //	delivery(deliveryProvince,deliveryProvinceString);
 }
+
+//立即购买按钮
+function buy_now(id) {
+    var buy_num = $("#buyNums").val();
+    buy_now_url += '?id=' + id + '&num=' + buy_num;
+    //页面跳转
+	window.location.href = buy_now_url;
+}

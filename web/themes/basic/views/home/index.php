@@ -1,4 +1,4 @@
-<div class="container" role="main">
+<div class="container">
     <?php
     foreach (Yii::app()->goods->getCategoryListTop() as $key => $firstCat) :
         ?>

@@ -1,4 +1,4 @@
-<div class="container block_box" role="">
+<div class="container block_box">
     <div><span>您当前的位置：</span></div>
 
     <div class="goods_detail">
@@ -116,15 +116,15 @@
                         </div>
                     </dd>
                 </dl>
-                <button type="button" class="btn btn-lg btn-danger"><i class=".glyphicon .glyphicon-shopping-cart"></i> 加入购物车</button>
-                <button type="button" class="btn btn-lg btn-danger">立即购买</button>
+                <button type="button" class="btn btn-lg btn-danger"><i class="glyphicon glyphicon-shopping-cart"></i> 加入购物车</button>
+                <button type="button" class="btn btn-lg btn-danger" onclick="buy_now('<?php echo $goodsInfo['id'];?>');"><i>￥</i>立即购买</button>
             </div>
 
         </div>
     </div>
 </div>
 <!-- -->
-<div class="container block_box" role="">
+<div class="container block_box">
 
     <div class="goods_hots_box">
         <div class="panel panel-default">
@@ -218,6 +218,9 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    var buy_now_url = '<?php echo $this->createAbsoluteUrl('shopping/confirm'); ?>';
+</script>
 <script src="<?php echo $this->data['js_url']; ?>/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="<?php echo $this->data['js_url']; ?>/jqueryzoom.js" type="text/javascript"></script>
 <script src="<?php echo $this->data['js_url']; ?>/goods_detail.js" type="text/javascript"></script>

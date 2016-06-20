@@ -71,6 +71,7 @@ a.orange, .orange {color: #fe6c00;}
 .goods_info .goods_current .resize {float: left;height: 22px;width: 18px;}
 .goods_info .goods_current .resize a {background: rgba(0, 0, 0, 0) url("../images/sprites.gif") no-repeat scroll 0px 0px;border: 1px solid #b4b4b4;display: block;height: 7px;margin-bottom: 4px;overflow: hidden;width: 16px;} 
 .goods_info .goods_current .resize a.reduce{background-position: 0px -7px;}
+.goods_info .goods_current i{font-style: normal;}
 
 /* 热卖商品区 */
 .goods_hots_box{width: 234px;float: left;}
@@ -92,3 +93,17 @@ a.orange, .orange {color: #fe6c00;}
 .goods_desc_box #myTab li.active a{color: #ba0505;font-weight: bold;}
 .goods_desc_box ul.sale_infos{overflow: hidden;margin: 0px;padding: 5px;border-bottom: 1px solid #ddd;border-left:1px solid #ddd; border-right:1px solid #ddd;}
 .goods_desc_box ul.sale_infos li{float: left;height: 20px;line-height: 20px;margin: 3px 0;overflow: hidden;padding: 0 2% 0 2%;text-align: left;width: 44%;text-overflow:ellipsis;white-space: nowrap;}
+
+
+/* 购买进度 */
+.stepflex{margin-top: 35px;}
+.stepflex dl {border-top: 5px solid #ccc;float: left;position: relative;top: -5px;width: 160px;}
+.stepflex dl .s-num{background-color: #ccc;border-radius:20px;height: 23px;width: 23px;line-height: 23px;text-align: center;margin: -15px auto 0px;}
+.stepflex dl.done {border-top-color: #FAB2B2;}
+.stepflex dl.done .s-num{background-color: #FAB2B2;}
+.stepflex dl.doing {border-top-color: #ba0505;color: #fff;}
+.stepflex dl.doing .s-num{background-color: #ba0505;}
+.stepflex dl dd{color:#FAB2B2;text-align: center;}
+/* 确认信息 */
+.confirm_info .page-header{margin: 20px 0px;}
+
