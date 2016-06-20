@@ -21,6 +21,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.util.*',
 	),
 
 	'modules'=>array(
@@ -58,6 +59,7 @@ return array(
             'urlSuffix'=>'.html',  
 			'rules'=>array(
                 'item_<id:\d+>'=>array('home/products','urlSuffix'=>'.html'), 
+                'test'=>array('test/index','urlSuffix'=>'.html'), 
 			),
 		),
 
