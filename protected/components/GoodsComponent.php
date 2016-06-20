@@ -61,11 +61,9 @@ class GoodsComponent extends CApplicationComponent {
         //方案一：
 //        $sql = 'select distinct go.id,go.name,go.img,go.sell_price from {{goods}} as go left join {{category_extend}} as ca on ca.goods_id = go.id where ca.category_id in (' . $categroyId . ') and go.is_del = 0 order by sale desc limit ' . $limit;
 //        $goodsInfo = Yii::app()->db->createCommand($sql)->queryAll();
-        
         //方案二：
 // 		$command = Yii::app()->db->createCommand($sql);
 // 		$goodsInfo = $command->queryAll();
-
         //方案三：
         $goodsModel = new Goods();
         $goodsInfo = $goodsModel->findAll(array(
@@ -75,7 +73,7 @@ class GoodsComponent extends CApplicationComponent {
             'join' => 'left join {{category_extend}} as ca on ca.goods_id = go.id',
             'order' => 'sale desc',
             'limit' => $limit,
-            'distinct'=>true
+            'distinct' => true
         ));
         return $goodsInfo;
         /*
@@ -85,6 +83,29 @@ class GoodsComponent extends CApplicationComponent {
           'fields'=> 'distinct go.id,go.name,go.img,go.sell_price',
           'order' => 'sale desc',
           'limit' => 10,
+         */
+    }
+
+    public function getCommendHot() {
+
+        $commendGoodsModel = new CommendGoods();
+        $commendGoodsList = $commendGoodsModel->findAll(array(
+            'select' => array('go.img', 'go.sell_price', 'go.name', 'co.goods_id', 'go.market_price'),
+            'condition' => 'co.commend_id = 3 and go.is_del = 0 AND go.id is not null',
+            'alias' => 'co',
+            'join' => 'left join {{goods}} as go on co.goods_id = go.id',
+            'order' => 'sort asc',
+            'limit' => 10
+        ));
+        return $commendGoodsList;
+
+        /*
+          'name' => 'commend_goods as co',
+          'join' => 'left join goods as go on co.goods_id = go.id',
+          'where' => 'co.commend_id = 3 and go.is_del = 0 AND go.id is not null',
+          'fields' => 'go.img,go.sell_price,go.name,go.id,go.market_price',
+          'limit'=>'10',
+          'order'=>'sort asc'
          */
     }
 

@@ -13,6 +13,7 @@ class BaseController extends CController {
     public function init() {
         parent::init();
         $host = Yii::app()->request->getHostInfo();
+        $this->data['static_url'] = $host . Yii::app()->theme->getBaseUrl() . '/static';
         $this->data['css_url'] = $host . Yii::app()->theme->getBaseUrl() . '/static/css';
         $this->data['js_url'] = $host . Yii::app()->theme->getBaseUrl() . '/static/js';
         $this->data['images_url'] = $host . Yii::app()->theme->getBaseUrl() . '/static/images';

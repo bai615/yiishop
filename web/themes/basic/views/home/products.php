@@ -132,9 +132,31 @@
                 <h3 class="panel-title" title="热卖商品">热卖商品</h3>
             </div>
             <div class="panel-body">
-              Panel content
+                <ul>
+                    <?php
+                    foreach (Yii::app()->goods->getCommendHot() as $key => $hotInfo) :
+                        ?>
+                        <li>
+                            <div class="goods_img">
+                                <a href="<?php echo $this->createAbsoluteUrl('home/products', array('id' => $hotInfo['goods_id'])); ?>" title="<?php echo $hotInfo['name']; ?>">
+                                    <img src="<?php echo $hotInfo['img']; ?>" alt="<?php echo $hotInfo['name']; ?>"/>
+                                </a>
+                            </div>
+                            <div class="goods_info">
+                                <a class="goods_name" href="<?php echo $this->createAbsoluteUrl('home/products', array('id' => $hotInfo['goods_id'])); ?>" title="<?php echo $hotInfo['name']; ?>"><?php echo $hotInfo['name']; ?></a>
+                                <div class="goods_price">
+                                    <span><s>￥<?php echo $goodsInfo['market_price'];?></s></span>
+                                    <span><b>￥<?php echo $goodsInfo['sell_price'];?></b></span>
+                                </div>
+                            </div>
+                        </li>
+                        <?php
+                    endforeach;
+                    ?>
+
+                </ul>
             </div>
-          </div>
+        </div>
     </div>
     <div class="goods_desc_box">
         <ul id="myTab" class="nav nav-tabs">

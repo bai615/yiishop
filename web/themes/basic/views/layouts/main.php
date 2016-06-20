@@ -75,7 +75,13 @@
             </div>
         </nav>
 
-<?php echo $content; ?>
+        <?php echo $content; ?>
 
+        <footer class="shop-footer">
+            <p>Shop template built for <a target="_bank" href="http://getbootstrap.com">Bootstrap</a> by <a target="_bank" href="https://yq.aliyun.com/users/1615464680740592">@大漠胡杨</a>.</p>
+            <p>
+                <a href="#">Back to top</a>
+            </p>
+        </footer>
     </body>
 </html>
