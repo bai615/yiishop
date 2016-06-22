@@ -109,6 +109,7 @@ a.orange, .orange {color: #fe6c00;}
 
 /* 用户注册 */
 .user_table_box{border-left: 1px solid #ccc;border-right: 1px solid #ccc;border-bottom: 1px solid #ddd;border-radius: 0px 0px 4px 4px;padding: 20px 0px;}
-.user_register .table td{border: 0px;}
-.user_register .table tr > td:nth-child(1){text-align: right;}
+.user_table_box .table th,.user_table_box .table td{border: 0px;}
+.user_table_box .form-control{width: 380px;display: inline-block;}
+.user_table_box label{display: inline-block;margin-left: 10px;}
 
