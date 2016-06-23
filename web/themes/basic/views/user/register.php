@@ -1,4 +1,4 @@
-<link href="<?php echo $this->data['static_url']; ?>/autovalidate/style.css" rel="stylesheet">
+<link href="<?php echo $this->data['libs_url']; ?>/autovalidate/style.css" rel="stylesheet">
 <div class="container block_box">
     <div class="text-right"><a href="/"><i class="glyphicon glyphicon-home"></i> 网站首页</a> &nbsp;&nbsp; 已有账号，<a href="<?php echo $this->createAbsoluteUrl('user/login'); ?>">请登录</a></div>
     <ul class="nav nav-tabs" role="tablist">
@@ -49,7 +49,7 @@
     </div>
 </div>
 <script type="text/javascript" src="<?php echo $this->data['js_url']; ?>/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="<?php echo $this->data['static_url']; ?>/autovalidate/validate.js"></script>
+<script type="text/javascript" src="<?php echo $this->data['libs_url']; ?>/autovalidate/validate.js"></script>
 <script type="text/javascript" src="<?php echo $this->data['libs_url']; ?>/layer/layer.js"></script> 
 <script type="text/javascript">
 <?php
