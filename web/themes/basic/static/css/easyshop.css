@@ -113,3 +113,7 @@ a.orange, .orange {color: #fe6c00;}
 .user_table_box .form-control{width: 380px;display: inline-block;}
 .user_table_box label{display: inline-block;margin-left: 10px;}
 
+/* 信息提示区 */
+.message_box{border: 1px solid #ccc;border-radius: 4px;padding: 140px 300px;text-align: center;}
+.message_box i{color: #80A930;height: 40px;font-size: 40px;vertical-align:middle;}
+.message_box .message_text{display: inline-block;height: 40px;line-height: 40px;font-size: 24px;margin-left: 5px;vertical-align:middle;}

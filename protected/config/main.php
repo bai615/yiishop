@@ -21,6 +21,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.logics.*',
         'application.util.*',
 	),
 
@@ -59,7 +60,7 @@ return array(
             'urlSuffix'=>'.html',  
 			'rules'=>array(
                 'item_<id:\d+>'=>array('home/products','urlSuffix'=>'.html'), 
-                'test'=>array('test/index','urlSuffix'=>'.html'), 
+                'success'=>array('common/success','urlSuffix'=>'.html'),
 			),
 		),
 

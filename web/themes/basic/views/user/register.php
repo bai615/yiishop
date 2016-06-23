@@ -5,11 +5,11 @@
         <li role="presentation" class="active"><a href="javascript:void(0)">新用户注册</a></li>
     </ul>
     <div class="user_table_box">
-        <form action="" method="" class="user_register" id="user_reg_form">
+        <form action="" method="post" class="user_register" id="user_reg_form">
             <table class="table">
                 <tr>
                     <th class="text-right" style="width: 280px;">手机号</th>
-                    <td><input class="form-control" type="text" name='mobile' pattern="mobi" alt="填写正确的手机格式" /><label>填写正确的手机格式</label></td>
+                    <td><input class="form-control" type="text" name='mobile' value="<?php echo isset($username) ? $username : ''; ?>" pattern="mobi" alt="填写正确的手机格式" /><label>填写正确的手机格式</label></td>
                 </tr>
                 <tr>
                     <th class="text-right">登录密码</th>
@@ -48,5 +48,17 @@
         </form>
     </div>
 </div>
-<script src="<?php echo $this->data['js_url']; ?>/jquery-1.8.3.min.js"></script>
-<script src="<?php echo $this->data['static_url']; ?>/autovalidate/validate.js"></script>
+<script type="text/javascript" src="<?php echo $this->data['js_url']; ?>/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->data['static_url']; ?>/autovalidate/validate.js"></script>
+<script type="text/javascript" src="<?php echo $this->data['libs_url']; ?>/layer/layer.js"></script> 
+<script type="text/javascript">
+<?php
+if (isset($errmsg)):
+    ?>
+        layer.ready(function () {
+            layer.msg('<?php echo $errmsg; ?>', {icon: 2, time: 2000});
+        });
+    <?php
+endif;
+?>
+</script>

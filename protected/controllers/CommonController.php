@@ -23,5 +23,13 @@ class CommonController extends BaseController {
             echo CJSON::encode($areaList);
         }
     }
+    
+    /**
+     * 成功提示页
+     */
+    public function actionSuccess(){
+        $data['message'] = Yii::app()->request->getParam('message');
+        $this->render('success');
+    }
 
 }

@@ -16,5 +16,16 @@ class Common {
     public static function gradeWidth($grade, $comments = 1) {
         return $comments == 0 ? 0 : 14 * ($grade / $comments);
     }
+    
+    /**
+     * 获取加密后的密码
+     * @param type $password
+     * @param type $salt
+     * @param type $prefix
+     * @return type
+     */
+    public static function getPwd($password, $salt='', $prefix = 'yiishop_') {
+        return md5(sha1($prefix . trim($password) . $salt));
+    }
 
 }
