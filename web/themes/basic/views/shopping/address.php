@@ -52,11 +52,11 @@
     </div>
 </form>
 <script src="<?php echo $this->data['js_url']; ?>/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo $this->data['static_url']; ?>/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="<?php echo $this->data['libs_url']; ?>/icheck/jquery.icheck.min.js"></script> 
 <script type="text/javascript" src="<?php echo $this->data['js_url']; ?>/Validform.min.js"></script>
-<script type="text/javascript" src="<?php echo $this->data['static_url']; ?>/artTemplate/artTemplate.js"></script>
-<script type="text/javascript" src="<?php echo $this->data['static_url']; ?>/artTemplate/artTemplate-plugin.js"></script>
-<script type="text/javascript" src="<?php echo $this->data['static_url']; ?>/artTemplate/area_select.js"></script>
+<script type="text/javascript" src="<?php echo $this->data['libs_url']; ?>/artTemplate/artTemplate.js"></script>
+<script type="text/javascript" src="<?php echo $this->data['libs_url']; ?>/artTemplate/artTemplate-plugin.js"></script>
+<script type="text/javascript" src="<?php echo $this->data['libs_url']; ?>/artTemplate/area_select.js"></script>
 <script type="text/javascript">
     var area_url = '<?php echo $this->createAbsoluteUrl('common/areaChild'); ?>';
     $(function () {

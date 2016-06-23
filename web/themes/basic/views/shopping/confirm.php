@@ -1,4 +1,4 @@
-<link href="<?php echo $this->data['static_url']; ?>/artdialog/skins/aero.css" rel="stylesheet">
+<link href="<?php echo $this->data['libs_url']; ?>/artdialog/skins/aero.css" rel="stylesheet">
 <div class="container block_box">
     <div class="row">
         <div class="col-md-4"><h1>结算中心</h1></div>
@@ -41,8 +41,8 @@
         </div>
     </div>
 </div>
-<script src="<?php echo $this->data['static_url']; ?>/artdialog/artDialog.js"></script>
-<script src="<?php echo $this->data['static_url']; ?>/artdialog/plugins/iframeTools.js"></script>
+<script src="<?php echo $this->data['libs_url']; ?>/artdialog/artDialog.js"></script>
+<script src="<?php echo $this->data['libs_url']; ?>/artdialog/plugins/iframeTools.js"></script>
 <script type="text/javascript">
                             function addressAdd() {
                                 var urlVal = '<?php echo $this->createAbsoluteUrl('shopping/address');?>';
