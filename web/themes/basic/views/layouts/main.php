@@ -65,6 +65,7 @@
                                 <li><a href="#">One more separated link</a></li>
                             </ul>
                         </li>
+                        <li><a href="javascript:void(0)" style="color: #ba0505;"><b>非运营，仅供学习交流的DEMO展示</b></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="<?php echo $this->createAbsoluteUrl('user/login'); ?>">登录</a></li>
