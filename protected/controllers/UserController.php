@@ -24,6 +24,10 @@ class UserController extends BaseController {
             ),
         );
     }
+    
+    public function actionLogin(){
+        $this->render('login');
+    }
 
     /**
      * 注册

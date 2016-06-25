@@ -1,4 +1,4 @@
-body {padding-top: 70px;}
+body {padding-top: 70px;background-color: #fff;}
 .shop-footer {background-color: #f9f9f9;border-top: 1px solid #e5e5e5;color: #999;padding: 40px 0;text-align: center;}
 a ,a:hover,a:visited,a:active{text-decoration: none;}
 ul,li{list-style-type:none}
@@ -108,12 +108,46 @@ a.orange, .orange {color: #fe6c00;}
 .confirm_info .page-header{margin: 20px 0px;}
 
 /* 用户注册 */
-.user_table_box{border-left: 1px solid #ccc;border-right: 1px solid #ccc;border-bottom: 1px solid #ddd;border-radius: 0px 0px 4px 4px;padding: 20px 0px;}
+.user_table_box{border-left: 1px solid #ccc;border-right: 1px solid #ccc;border-bottom: 1px solid #ddd;border-radius: 0px 0px 4px 4px;padding: 20px 0px;overflow: hidden;}
+.user_table_box .table{margin-bottom: 10px;}
+.user_table_box .table th{vertical-align: middle;}
 .user_table_box .table th,.user_table_box .table td{border: 0px;}
-.user_table_box .form-control{width: 380px;display: inline-block;}
+.user_table_box .form-control{width: 230px;display: inline-block;}
 .user_table_box label{display: inline-block;margin-left: 10px;}
+.user_table_box .user_reg_box{width:530px;float: left;}
+.user_table_box .reg_ad{border: 1px solid #ccc;float: right;height: 372px;width: 442px;margin-right: 20px;}
+.user_table_box .reg_ad img{height: 370px;width: 440px;overflow: hidden;}
 
 /* 信息提示区 */
 .message_box{border: 1px solid #ccc;border-radius: 4px;padding: 140px 300px;text-align: center;}
 .message_box i{color: #80A930;height: 40px;font-size: 40px;vertical-align:middle;}
 .message_box .message_text{display: inline-block;height: 40px;line-height: 40px;font-size: 24px;margin-left: 5px;vertical-align:middle;}
+
+
+/* 用户登录区 */
+.user_login_box{border: 1px solid #ccc;height: 422px;padding: 10px;}
+.user_login_box h2{padding: 0px 20px;}
+.user_login_box .login_ad{border: 1px solid #ccc;width: 672px;float: left;}
+.user_login_box .login_ad img{height: 420px;width: 670px;}
+.user_login_box .login_form{float: right;height: 400px;width: 300px;}
+.user_login_box .login_form table{width: 260px;margin: 0px 20px;}
+.user_login_box .login_form td{height: 50px;}
+.user_login_box .login_form .username,.user_login_box .login_form .password{position: relative;}
+.user_login_box .login_form .username i,.user_login_box .login_form .password i{width: 30px;margin-right: 10px;height: 36px;float: left;background: url("../images/icon.png")  no-repeat;position: absolute;z-index: 10; }
+.user_login_box .login_form .username i{background-position:10px -110px;}
+.user_login_box .login_form .password i{background-position:10px -150px;}
+.user_login_box .login_form .username input,.user_login_box .login_form .password input{padding: 6px 12px 6px 35px;}
+.user_login_box .login_form .find_pwd{float: right;}
+.user_login_box .login_form .btn{width: 150px;}
+.user_login_box .login_form .other_login{padding: 15px 0px;}
+.user_login_box .login_form .other_login p{margin: 0 0 5px;}
+.user_login_box .login_form .other_login dl{margin-bottom: 5px;}
+.user_login_box .login_form .other_login dt{float: left;margin-right: 5px;}
+.user_login_box .login_form .other_login a{background: rgba(0, 0, 0, 0) url("../images/icon.png") no-repeat scroll 0 -260px;display: block;height: 20px;overflow: hidden;text-indent: 99em;width: 20px;}
+.user_login_box .login_form .other_login a.qq:hover {background-position: -20px -260px;}
+.user_login_box .login_form .other_login a.wx {background-position: 0 -280px;}
+.user_login_box .login_form .other_login a.wx:hover {background-position: -20px -280px;}
+.user_login_box .login_form .other_login a.wb {background-position: 0 -300px;}
+.user_login_box .login_form .other_login a.wb:hover {background-position: -20px -300px;}
+.user_login_box .login_form .other_login a.alpay {background-position: 0 -320px;}
+.user_login_box .login_form .other_login a.alpay:hover {background-position: -20px -320px;}
