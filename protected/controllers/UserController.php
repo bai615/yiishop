@@ -24,8 +24,11 @@ class UserController extends BaseController {
             ),
         );
     }
-    
-    public function actionLogin(){
+
+    public function actionLogin() {
+        if (Yii::app()->request->isPostRequest) {
+            pprint($_POST);
+        }
         $this->render('login');
     }
 
@@ -57,6 +60,19 @@ class UserController extends BaseController {
             }
         }
         $this->render('register', $data);
+    }
+
+    /**
+     * 检查用户是否已存在
+     */
+    public function actionCheckName() {
+        $username = Yii::app()->request->getParam('mobile');
+        $flag = UserLogic::checkByName($username);
+        if ($flag) {
+            echo CJSON::encode(array('errcode' => 1, 'errmsg' => '您的手机已被占用'));
+        } else {
+            echo CJSON::encode(array('errcode' => 0, 'errmsg' => 'OK'));
+        }
     }
 
 }

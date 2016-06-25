@@ -69,4 +69,23 @@ class UserLogic {
         return array('errcode' => 1, 'errmsg' => '注册失败，请稍后重试');
     }
 
+    /**
+     * 通过名称检查用户是否存在
+     * @param type $username
+     * @return type
+     */
+    public static function checkByName($username) {
+        $userModel = new User();
+        $userInfo = $userModel->find(array(
+            'select' => 'id',
+            'condition' => 'username=:username and is_del=0',
+            'params' => array(':username' => $username)
+        ));
+        if ($userInfo) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -66,4 +66,12 @@ if (isset($errmsg)):
     <?php
 endif;
 ?>
+    $("input[name=mobile]").blur(function(){
+        var mobile = $("input[name=mobile]").val();
+        $.post('<?php echo $this->createAbsoluteUrl('user/checkName');?>',{mobile:mobile},function(data){
+            if(1===data.errcode){
+                layer.msg(data.errmsg, {icon: 2, time: 2000});
+            }
+        },'json');
+    });
 </script>
