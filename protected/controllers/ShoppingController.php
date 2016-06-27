@@ -11,9 +11,13 @@ class ShoppingController extends BaseController {
      * 订单信息核对确认
      */
     public function actionConfirm() {
+        $userId = $this->_userI['userId'];
         $goodsId = intval(Yii::app()->request->getParam('id'));
         $buyNum = intval(Yii::app()->request->getParam('num'));
-        $this->render('confirm');
+
+        $addressList = Address::getAddress($userId);
+        $data['addressList'] = $addressList;
+        $this->render('confirm', $data);
     }
 
     /**
@@ -34,16 +38,37 @@ class ShoppingController extends BaseController {
     }
 
     public function actionAddressAdd() {
-        pprint($_POST);
-//        $accept_name = IFilter::act(IReq::get('accept_name'));
-//		$province    = IFilter::act(IReq::get('province'),'int');
-//		$city        = IFilter::act(IReq::get('city'),'int');
-//		$area        = IFilter::act(IReq::get('area'),'int');
-//		$address     = IFilter::act(IReq::get('address'));
-//		$zip         = IFilter::act(IReq::get('zip'));
-//		$telphone    = IFilter::act(IReq::get('telphone'));
-//		$mobile      = IFilter::act(IReq::get('mobile'));
-//        $user_id     = $this->user['user_id'];
+        $data['accept_name'] = Yii::app()->request->getParam('accept_name');
+        $data['province'] = intval(Yii::app()->request->getParam('province'));
+        $data['city'] = intval(Yii::app()->request->getParam('city'));
+        $data ['area'] = intval(Yii::app()->request->getParam('area'));
+        $data['address'] = Yii::app()->request->getParam('address');
+        $data['mobile'] = Yii::app()->request->getParam('mobile');
+        $userId = $this->_userI['userId'];
+
+        $addressData = array();
+        $addressModel = new Address();
+        foreach ($data as $key => $value) {
+            if (!$value) {
+                $result = array('result' => false, 'msg' => '请仔细填写收货地址');
+                die(CJSON::encode($result));
+            }
+            $addressModel->$key = $value;
+            $addressData[$key] = $value;
+        }
+        if ($userId) {
+            $addressModel->user_id = $userId;
+            $addressModel->save();
+            $addressData['id'] = $addressModel->id;
+            $areaList = Areas::name($data['province'], $data['city'], $data ['area']);
+            $addressData['province_val'] = $areaList[$data['province']];
+            $addressData['city_val'] = $areaList[$data['city']];
+            $addressData['area_val'] = $areaList[$data ['area']];
+            $result = array('data' => $addressData);
+        } else {
+            $result = array('result' => false, 'msg' => '添加失败，请稍后重试');
+        }
+        die(CJSON::encode($result));
     }
 
 }
