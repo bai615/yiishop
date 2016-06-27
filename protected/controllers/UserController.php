@@ -25,11 +25,24 @@ class UserController extends BaseController {
         );
     }
 
+    /**
+     * 登录
+     */
     public function actionLogin() {
+        $model = new SignIn();
         if (Yii::app()->request->isPostRequest) {
-            pprint($_POST);
+            $signInArr = Yii::app()->request->getParam('SignIn');
+            $model->username = $signInArr['username'];
+            $model->password = $signInArr['password'];
+            $model->online = $signInArr['online'];
+//            $model->attributes = $_POST['SignIn'];
+            $password = $model->password;
+            if ($model->validate() && $model->login()) {
+                $this->redirect($this->createAbsoluteUrl('home/index'));
+            }
+            $model->password = $password;
         }
-        $this->render('login');
+        $this->render('login', array('model' => $model));
     }
 
     /**
@@ -73,6 +86,22 @@ class UserController extends BaseController {
         } else {
             echo CJSON::encode(array('errcode' => 0, 'errmsg' => 'OK'));
         }
+    }
+
+    /**
+     * 退出
+     */
+    public function actionLogout() {
+        //清除SESSION信息
+        Yii::app()->session['shopUserInfo'] = array();
+        Yii::app()->session->clear();
+        Yii::app()->session->destroy();
+        //清除COOKIE信息
+        $cookieName = $cookieName = Common::getAutoCookieName();
+        $cookie = new CHttpCookie($cookieName, '');
+        $cookie->expire = time() - 60;  //有限期
+        Yii::app()->request->cookies[$cookieName] = $cookie;
+        $this->redirect($this->createAbsoluteUrl('user/login'));
     }
 
 }

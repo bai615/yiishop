@@ -59,6 +59,10 @@ return array(
             'showScriptName'=>false,    // 将代码里链接的index.php隐藏掉。  
             'urlSuffix'=>'.html',  
 			'rules'=>array(
+                'index'=>array('home/index','urlSuffix'=>'.html'),
+                'login'=>array('user/login','urlSuffix'=>'.html'),
+                'logout'=>array('user/logout','urlSuffix'=>'.html'),
+                'reg'=>array('user/register','urlSuffix'=>'.html'),
                 'item_<id:\d+>'=>array('home/products','urlSuffix'=>'.html'), 
                 'success'=>array('common/success','urlSuffix'=>'.html'),
 			),
@@ -94,6 +98,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'auto_login_time' => time() + 60 * 60 * 24 * 30,  //有限期30天
+        'auto_login_cookie_name' => 'shop_login_auto',
 	),
 );

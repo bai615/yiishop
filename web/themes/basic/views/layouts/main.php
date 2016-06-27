@@ -68,9 +68,20 @@
                         <li><a href="javascript:void(0)" style="color: #ba0505;"><b>非运营，仅供学习交流的DEMO展示</b></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="<?php echo $this->createAbsoluteUrl('user/login'); ?>">登录</a></li>
-                        <li><a href="<?php echo $this->createAbsoluteUrl('user/register'); ?>">注册</a></li>
-                        <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                        <?php
+                        if ($this->_userI):
+                            ?>
+                            <li><a href="<?php echo $this->createAbsoluteUrl('user/register'); ?>"><?php echo $this->_userI['userName'];?></a></li>
+                            <li><a href="<?php echo $this->createAbsoluteUrl('user/logout'); ?>">退出</a></li>
+                            <?php
+                        else:
+                            ?>
+                            <li><a href="<?php echo $this->createAbsoluteUrl('user/login'); ?>">请登录</a></li>
+                            <li><a href="<?php echo $this->createAbsoluteUrl('user/register'); ?>">免费注册</a></li>
+                        <?php
+                        endif;
+                        ?>
+
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

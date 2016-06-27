@@ -5,6 +5,7 @@ ul,li{list-style-type:none}
 .bold, a.bold {font-weight: bold;}
 a.orange, .orange {color: #fe6c00;}
 .clear{clear: both;}
+.error{border-color: #ba0505;color: #ba0505;}
 
 .container{width: 1024px;}
 .block_box{margin-bottom: 30px;}
