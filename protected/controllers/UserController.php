@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 用户
+ * 用户（登录、注册、退出）
  *
  * @author baihua <baihua_2011@163.com>
  */

@@ -24,20 +24,21 @@ class ShoppingController extends BaseController {
      * 收货地址弹出框
      */
     public function actionAddress() {
-        $userId = 1; //$this->user['user_id'];
-        $id = intval(Yii::app()->request->getParam('id'));
-        if ($userId) {
-            if ($id) {
-//                $addressDB = new IModel('address');
-//                $this->addressRow = $addressDB->getObj('user_id = ' . $user_id . ' and id = ' . $id);
-            }
-        } else {
-//            $this->addressRow = ISafe::get('address');
+        $userId = $this->_userI['userId'];
+        $addressId = intval(Yii::app()->request->getParam('id'));
+        $addressRow = array();
+        if ($userId && $addressId) {
+            $model = new Address();
+            $addressRow = $model->find(array(
+                'condition' => 'id=:addressId and user_id=:userId',
+                'params' => array(':addressId' => $addressId, ':userId' => $userId)
+            ));
         }
-        $this->renderPartial('address');
+        $this->renderPartial('address', array('addressRow' => $addressRow));
     }
 
     public function actionAddressAdd() {
+        $addressId = Yii::app()->request->getParam('id');
         $data['accept_name'] = Yii::app()->request->getParam('accept_name');
         $data['province'] = intval(Yii::app()->request->getParam('province'));
         $data['city'] = intval(Yii::app()->request->getParam('city'));
@@ -45,7 +46,6 @@ class ShoppingController extends BaseController {
         $data['address'] = Yii::app()->request->getParam('address');
         $data['mobile'] = Yii::app()->request->getParam('mobile');
         $userId = $this->_userI['userId'];
-
         $addressData = array();
         $addressModel = new Address();
         foreach ($data as $key => $value) {
@@ -57,9 +57,14 @@ class ShoppingController extends BaseController {
             $addressData[$key] = $value;
         }
         if ($userId) {
-            $addressModel->user_id = $userId;
-            $addressModel->save();
-            $addressData['id'] = $addressModel->id;
+            if ($addressId) {
+                $addressModel->updateAll($data, 'id=:addressId and user_id=:userId', array(':addressId' => $addressId, ':userId' => $userId));
+                $addressData['id'] = $addressId;
+            } else {
+                $addressModel->user_id = $userId;
+                $addressModel->save();
+                $addressData['id'] = $addressModel->id;
+            }
             $areaList = Areas::name($data['province'], $data['city'], $data ['area']);
             $addressData['province_val'] = $areaList[$data['province']];
             $addressData['city_val'] = $areaList[$data['city']];
