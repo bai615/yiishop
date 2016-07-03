@@ -32,10 +32,13 @@
         </div>
         <div class="goods_info">
             <h2 class="goods_title"><?php echo isset($goodsInfo['name']) ? $goodsInfo['name'] : ""; ?></h2>
+            <!--货品ID，当为商品时值为空-->
+            <input type='hidden' id='product_id' alt='货品ID' value='' />
+            <input type='hidden' id='goods_id' alt='商品ID' value='<?php echo $goodsInfo['id'];?>' />
             <ul>
-                <li class="goods_no">商品编号：<?php echo $goodsInfo['goods_no'] ? $goodsInfo['goods_no'] : $goodsInfo['id']; ?></li>
+                <li class="goods_no">商品编号：<span id="goods_no"><?php echo $goodsInfo['goods_no'] ? $goodsInfo['goods_no'] : $goodsInfo['id']; ?></span></li>
                 <li>销售价：
-                    <b class="goods_price">
+                    <b class="goods_price" id="real_price">
                         <?php
                         if ($goodsInfo['price_area']['minSellPrice'] != $goodsInfo['price_area']['maxSellPrice']):
                             ?>
@@ -50,7 +53,7 @@
                     </b>
                 </li>
                 <li>市场价：
-                    <s>
+                    <s id="market_price">
                         <?php
                         if ($goodsInfo['price_area']['minMarketPrice'] != $goodsInfo['price_area']['maxMarketPrice']):
                             ?>
@@ -64,7 +67,7 @@
                         ?>
                     </s>
                 </li>
-                <li>库存：现货<span>(<label id="data_storeNums"><?php echo $goodsInfo['store_nums']; ?></label>)</span></li>
+                <li>库存：现货<span>(<label id="store_nums"><?php echo $goodsInfo['store_nums']; ?></label>)</span></li>
                 <li>顾客评分：<span class="goods_grade"><i style="width:<?php echo Common::gradeWidth($goodsInfo['grade'], $goodsInfo['comments']); ?>px;"></i></span> (已有<?php echo $goodsInfo['comments']; ?>人评价)</li>
                 <li>配送至：</li>
             </ul>
@@ -117,7 +120,7 @@
                     </dd>
                 </dl>
                 <button type="button" class="btn btn-lg btn-danger"><i class="glyphicon glyphicon-shopping-cart"></i> 加入购物车</button>
-                <button type="button" class="btn btn-lg btn-danger" onclick="buy_now('<?php echo $goodsInfo['id'];?>');"><i>￥</i>立即购买</button>
+                <button type="button" class="btn btn-lg btn-danger" onclick="buy_now('<?php echo $goodsInfo['id']; ?>');"><i>￥</i>立即购买</button>
             </div>
 
         </div>
@@ -145,8 +148,8 @@
                             <div class="goods_info">
                                 <a class="goods_name" href="<?php echo $this->createAbsoluteUrl('home/products', array('id' => $hotInfo['goods_id'])); ?>" title="<?php echo $hotInfo['name']; ?>"><?php echo $hotInfo['name']; ?></a>
                                 <div class="goods_price">
-                                    <span><s>￥<?php echo $goodsInfo['market_price'];?></s></span>
-                                    <span><b>￥<?php echo $goodsInfo['sell_price'];?></b></span>
+                                    <span><s>￥<?php echo $goodsInfo['market_price']; ?></s></span>
+                                    <span><b>￥<?php echo $goodsInfo['sell_price']; ?></b></span>
                                 </div>
                             </div>
                         </li>
@@ -180,7 +183,7 @@
                     <?php endif; ?>
 
                     <?php if (isset($goodsInfo['weight']) && $goodsInfo['weight']) : ?>
-                        <li title="<?php echo isset($goodsInfo['weight']) ? $goodsInfo['weight'] : ""; ?>g">商品毛重：<label id="data_weight"><?php echo isset($goodsInfo['weight']) ? $goodsInfo['weight'] : ""; ?>g</label></li>
+                        <li title="<?php echo isset($goodsInfo['weight']) ? $goodsInfo['weight'] : ""; ?>g">商品毛重：<label id="weight"><?php echo isset($goodsInfo['weight']) ? $goodsInfo['weight'] : ""; ?>g</label></li>
                     <?php endif; ?>
 
                     <?php if (isset($goodsInfo['unit']) && $goodsInfo['unit']) : ?>
@@ -220,6 +223,7 @@
 
 <script type="text/javascript">
     var buy_now_url = '<?php echo $this->createAbsoluteUrl('shopping/confirm'); ?>';
+    var get_product_url = "<?php echo $this->createAbsoluteUrl('home/getProduct'); ?>";
 </script>
 <script src="<?php echo $this->data['js_url']; ?>/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="<?php echo $this->data['js_url']; ?>/jqueryzoom.js" type="text/javascript"></script>

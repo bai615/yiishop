@@ -29,6 +29,7 @@ class UserController extends BaseController {
      * 登录
      */
     public function actionLogin() {
+        $callback = Yii::app()->request->getParam('callback');
         $model = new SignIn();
         if (Yii::app()->request->isPostRequest) {
             $signInArr = Yii::app()->request->getParam('SignIn');
@@ -38,7 +39,8 @@ class UserController extends BaseController {
 //            $model->attributes = $_POST['SignIn'];
             $password = $model->password;
             if ($model->validate() && $model->login()) {
-                $this->redirect($this->createAbsoluteUrl('home/index'));
+                $callbackUrl = empty($callback) ? $this->createAbsoluteUrl('home/index') : $callback;
+                $this->redirect($callbackUrl);
             }
             $model->password = $password;
         }

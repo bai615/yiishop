@@ -11,12 +11,24 @@ class ShoppingController extends BaseController {
      * 订单信息核对确认
      */
     public function actionConfirm() {
+        $this->is_login();
         $userId = $this->_userI['userId'];
-        $goodsId = intval(Yii::app()->request->getParam('id'));
+        $id = intval(Yii::app()->request->getParam('id'));
         $buyNum = intval(Yii::app()->request->getParam('num'));
+        $type = Yii::app()->request->getParam('type');
 
         $addressList = Address::getAddress($userId);
+        $paymentList = Payment::getPaymentList();
+
+        //计算商品
+        $countSumObj = new CountSum();
+        $cartInfo = $countSumObj->cartCount($id, $type, $buyNum);
+
+        $data['gid'] = $id;
+        $data['type'] = $type;
         $data['addressList'] = $addressList;
+        $data['paymentList'] = $paymentList;
+        $data['cartInfo'] = $cartInfo;
         $this->render('confirm', $data);
     }
 
@@ -37,6 +49,9 @@ class ShoppingController extends BaseController {
         $this->renderPartial('address', array('addressRow' => $addressRow));
     }
 
+    /**
+     * 添加地址
+     */
     public function actionAddressAdd() {
         $addressId = Yii::app()->request->getParam('id');
         $data['accept_name'] = Yii::app()->request->getParam('accept_name');
@@ -74,6 +89,14 @@ class ShoppingController extends BaseController {
             $result = array('result' => false, 'msg' => '添加失败，请稍后重试');
         }
         die(CJSON::encode($result));
+    }
+
+    /**
+     * 订单生成
+     */
+    public function actionOrder() {
+        $addressId = intval(Yii::app()->request->getParam('radio_address'));
+        pprint($_POST);
     }
 
 }

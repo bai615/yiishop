@@ -26,7 +26,18 @@ $(function () {
                 specArray.push($(this).find('a.spec_current').attr('value'));
             });
             var specJSON = '[' + specArray.join(",") + ']';
-            console.log(specJSON);
+            var goodsId = $("#goods_id").val();
+            $.post(get_product_url, {"goods_id": goodsId, "specJSON": specJSON, "random": Math.random}, function (data) {
+                if (data.flag === 'success') {
+                    $("#real_price").html('￥'+data.info.sell_price);
+                    $("#goods_no").html(data.info.products_no);
+                    $("#market_price").html('￥'+data.info.market_price);
+                    $("#store_nums").html(data.info.store_nums);
+                    $("#weight").html(data.info.weight+'g');
+                    $("#product_id").val(data.info.id);
+                }
+            }, 'json')
+//            console.log(specJSON);
         }
     });
 });
@@ -89,8 +100,16 @@ function checkBuyNums()
 
 //立即购买按钮
 function buy_now(id) {
-    var buy_num = $("#buyNums").val();
-    buy_now_url += '?id=' + id + '&num=' + buy_num;
+    var buy_num = parseInt($.trim($("#buyNums").val()));
+    var type = 'goods';
+
+    if ($('#product_id').val())
+    {
+        id = $('#product_id').val();
+        type = 'product';
+    }
+
+    buy_now_url += '?id=' + id + '&num=' + buy_num + '&type=' + type;
     //页面跳转
-	window.location.href = buy_now_url;
+    window.location.href = buy_now_url;
 }

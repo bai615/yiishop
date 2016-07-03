@@ -107,4 +107,39 @@ class HomeController extends BaseController {
         $this->render('products', array('goodsInfo' => $goodsInfo));
     }
 
+    /**
+     * 获取货品数据
+     */
+    public function actionGetProduct() {
+        $specJSON = Yii::app()->request->getParam('specJSON');
+        $jsonData = CJSON::decode($specJSON);
+        if (empty($jsonData)) {
+            die(CJSON::encode(array('flag' => 'fail', 'message' => '规格值不符合标准')));
+        }
+        $goodsId = intval(Yii::app()->request->getParam('goods_id'));
+        //获取货品数据
+        $productsObj = new Products();
+        $procductsInfo = $productsObj->find(array(
+            'condition' => 'goods_id=:goodsId and spec_array=:specJSON',
+            'params' => array(':goodsId' => $goodsId, ':specJSON' => $specJSON)
+        ));
+        //匹配到货品数据
+        if (empty($procductsInfo)) {
+            die(CJSON::encode(array('flag' => 'fail', 'message' => '没有找到相关货品')));
+        } else {
+            $data = array(
+                'id' => $procductsInfo['id'],
+                'goods_id' => $procductsInfo['goods_id'],
+                'products_no' => $procductsInfo['products_no'],
+                'spec_array' => $procductsInfo['spec_array'],
+                'store_nums' => $procductsInfo['store_nums'],
+                'market_price' => $procductsInfo['market_price'],
+                'sell_price' => $procductsInfo['sell_price'],
+                'cost_price' => $procductsInfo['cost_price'],
+                'weight' => $procductsInfo['weight']
+            );
+            die(CJSON::encode(array('flag' => 'success', 'info' => $data)));
+        }
+    }
+
 }

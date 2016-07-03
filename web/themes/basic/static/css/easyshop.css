@@ -107,6 +107,11 @@ a.orange, .orange {color: #fe6c00;}
 .stepflex dl dd{color:#FAB2B2;text-align: center;}
 /* 确认信息 */
 .confirm_info .page-header{margin: 20px 0px;}
+.addr_list li {line-height: 20px;}
+.addr_list input.radio {margin-right: 5px;vertical-align: middle;}
+.confirm_info .goods_list table{font-size: 14px;}
+.confirm_info .goods_list .goods_img{display: block;margin: 0px auto;}
+.confirm_info .submit_btn{padding: 15px;}
 
 /* 用户注册 */
 .user_table_box{border-left: 1px solid #ccc;border-right: 1px solid #ccc;border-bottom: 1px solid #ddd;border-radius: 0px 0px 4px 4px;padding: 20px 0px;overflow: hidden;}
