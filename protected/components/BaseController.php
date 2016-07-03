@@ -47,4 +47,11 @@ class BaseController extends CController {
         $this->data['images_url'] = $host . Yii::app()->theme->getBaseUrl() . '/static/images';
     }
 
+    public function is_login() {
+        if (empty($this->_userI)) {
+            $callBackUrl = $this->createAbsoluteUrl($this->id . '/' . $this->action->id) . '?' . http_build_query($_GET);
+            $this->redirect($this->createAbsoluteUrl( 'user/login', array('callback'=>$callBackUrl)));
+        }
+    }
+
 }
