@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="Bootstrap">
-        <meta name="keywords" content="Bootstrap">
+        <meta name="description" content="EasyShop,Easy Shop,Easy 商城，Easy 购物网站,Bootstrap Shop">
+        <meta name="keywords" content="EasyShop,Easy Shop,Easy 商城，Easy 购物网站,Bootstrap Shop">
         <link rel="icon" href="../../favicon.ico">
 
         <title>Theme Template for Bootstrap</title>
@@ -71,7 +71,7 @@
                         <?php
                         if ($this->_userI):
                             ?>
-                            <li><a href="<?php echo $this->createAbsoluteUrl('user/register'); ?>"><?php echo $this->_userI['userName'];?></a></li>
+                            <li><a href="<?php echo $this->createAbsoluteUrl('user/register'); ?>"><?php echo $this->_userI['userName']; ?></a></li>
                             <li><a href="<?php echo $this->createAbsoluteUrl('user/logout'); ?>">退出</a></li>
                             <?php
                         else:
@@ -95,5 +95,9 @@
                 <a href="#">Back to top</a>
             </p>
         </footer>
+        <script type="text/javascript">
+            //立即购买
+            var buy_now_url = '<?php echo $this->createAbsoluteUrl('shopping/confirm'); ?>';
+        </script>
     </body>
 </html>
