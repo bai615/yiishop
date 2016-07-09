@@ -27,5 +27,9 @@ class UcenterController extends BaseController {
         }
         die(CJSON::encode($result));
     }
+    
+    public function actionOrder(){
+        echo '订单中心';
+    }
 
 }

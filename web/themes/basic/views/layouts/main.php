@@ -96,6 +96,27 @@
             </p>
         </footer>
         <script type="text/javascript">
+            window.alert = function (mess) {
+                art.dialog.alert(mess);
+            }
+            window.confirm = function (mess, bnYes, bnNo)
+            {
+                if (bnYes === undefined && bnNo === undefined)
+                {
+                    return eval("window.realConfirm(mess)");
+                } else
+                {
+                    art.dialog.confirm(
+                            mess,
+                            function () {
+                                eval(bnYes)
+                            },
+                            function () {
+                                eval(bnNo)
+                            }
+                    );
+                }
+            }
             //立即购买
             var buy_now_url = '<?php echo $this->createAbsoluteUrl('shopping/confirm'); ?>';
         </script>

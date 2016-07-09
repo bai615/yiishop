@@ -27,12 +27,12 @@ class Common {
     public static function getPwd($password, $salt = '', $prefix = 'yiishop_') {
         return md5(sha1($prefix . trim($password) . $salt));
     }
-    
+
     /**
      * 前台用户自动Cookie名称
      * @return type
      */
-    public static function getAutoCookieName(){
+    public static function getAutoCookieName() {
         return md5(Yii::app()->params['auto_login_cookie_name']);
     }
 
@@ -87,7 +87,7 @@ class Common {
         return $realip;
     }
 
-    /*********************************************************************
+    /*     * *******************************************************************
       函数名称:encrypt
       函数作用:加密解密字符串
       使用方法:
@@ -97,7 +97,7 @@ class Common {
       $string   :需要加密解密的字符串
       $operation:判断是加密还是解密:E:加密   D:解密
       $key      :加密的钥匙(密匙);
-     *********************************************************************/
+     * ******************************************************************* */
 
     public static function encrypt($string, $operation, $key = '') {
         $key = md5($key);
@@ -133,6 +133,23 @@ class Common {
         } else {
             return str_replace('=', '', base64_encode($result));
         }
+    }
+
+    //[公共方法]通过解析products表中的spec_array转化为格式：key:规格名称;value:规格值
+    public static function show_spec($specJson) {
+        $specArray = CJSON::decode($specJson);
+        $spec = array();
+
+        if ($specArray) {
+            foreach ($specArray as $val) {
+                if ($val['type'] == 1) {
+                    $spec[$val['name']] = $val['value'];
+                } else {
+                    $spec[$val['name']] = '<img src="' . $val['value'] . '" class="img_border" style="width:15px;height:15px;" />';
+                }
+            }
+        }
+        return $spec;
     }
 
 }

@@ -222,7 +222,6 @@
 </div>
 
 <script type="text/javascript">
-    var buy_now_url = '<?php echo $this->createAbsoluteUrl('shopping/confirm'); ?>';
     var get_product_url = "<?php echo $this->createAbsoluteUrl('home/getProduct'); ?>";
 </script>
 <script src="<?php echo $this->data['js_url']; ?>/jquery-1.8.3.min.js" type="text/javascript"></script>

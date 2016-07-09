@@ -21,11 +21,11 @@
                     ?>
                     <div class="goods_block">
                         <p class="goods_img">
-                            <a title="<?php echo $info['name']; ?>" target="_bank" href="<?php echo $this->createAbsoluteUrl('home/products', array('id' => $info['id'])); ?>">
+                            <a title="<?php echo $info['name']; ?>" target="_blank" href="<?php echo $this->createAbsoluteUrl('home/products', array('id' => $info['id'])); ?>">
                                 <img class="goods_img" src="<?php echo $info['img']; ?>" alt="<?php echo $info['name']; ?>" title="<?php echo $info['name']; ?>"/>
                             </a>
                         </p>
-                        <p class="goods_title"><a title="<?php echo $info['name']; ?>" target="_bank" href="<?php echo $this->createAbsoluteUrl('home/products', array('id' => $info['id'])); ?>"><?php echo $info['name']; ?></a></p>
+                        <p class="goods_title"><a title="<?php echo $info['name']; ?>" target="_blank" href="<?php echo $this->createAbsoluteUrl('home/products', array('id' => $info['id'])); ?>"><?php echo $info['name']; ?></a></p>
                         <p class="goods_price">惊喜价：<b>￥<?php echo $info['sell_price']; ?></b></p>
                         <p class="goods_market_price">市场价：<s>￥<?php echo $info['market_price']; ?></s></p>
                         <p class="goods_operate">
