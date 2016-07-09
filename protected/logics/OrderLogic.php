@@ -67,10 +67,36 @@ class OrderLogic {
         $checkWhere[] = " NOW() < date_add(create_time,INTERVAL 2 MINUTE) "; //在有限时间段内生成的订单
         $checkWhere[] = " pay_status != 1 "; //是否付款
         $where = join(" and ", $checkWhere);
-
         //查询订单数据库
         $orderObj = new Order();
-        $orderList = $orderObj->find($where);
+        $orderList = $orderObj->findAll($where);
+        return self::checkOrder($orderList, $goodsList);
+    }
+
+    private static function checkOrder($orderList, $goodsList) {
+        //有重复下单的嫌疑
+        if ($orderList) {
+            //当前购买的
+            $nowBuy = "";
+            foreach ($goodsList as $key => $val) {
+                $nowBuy .= $val['goods_id'] . "@" . $val['product_id'];
+            }
+
+            //已经购买的
+            $orderGoodsObj = new OrderGoods();
+            foreach ($orderList as $key => $val) {
+                $isBuyed = "";
+                $orderGoodsList = $orderGoodsObj->findAll("order_id = " . $val['id']);
+                foreach ($orderGoodsList as $k => $item) {
+                    $isBuyed .= $item['goods_id'] . "@" . $item['product_id'];
+                }
+
+                if ($nowBuy == $isBuyed) {
+                    return "您所提交的订单重复，请稍候再试...";
+                }
+            }
+        }
+        return true;
     }
 
 }

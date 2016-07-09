@@ -125,10 +125,10 @@ class ShoppingController extends BaseController {
         );
 
         //检查订单重复
-//        $result = OrderLogic::checkRepeat($checkData, $cartInfo['goodsList']);
-//        if (is_string($result)) {
-//            IError::show(403, $result);
-//        }
+        $result = OrderLogic::checkRepeat($checkData, $cartInfo['goodsList']);
+        if (is_string($result)) {
+            die('<script>alert("' . $result . '");window.history.go(-1);</script>');
+        }
         //处理支付方式
         $paymentObj = new Payment();
         $paymentInfo = $paymentObj->find(array(
@@ -167,15 +167,14 @@ class ShoppingController extends BaseController {
         $orderInstance = new OrderLogic();
         $orderInstance->insertOrderGoods($orderId, $cartInfo['goodsList']);
 
-        $data = array();
         $data['orderId'] = $orderId;
         $data['orderNo'] = $orderObj->order_no;
-        $data['orderAmount'] = sprintf('%.2f',$orderObj->order_amount);
-        $data['paymentName'] = $paymentInfo['name'];
+        $data['orderAmount'] = sprintf('%.2f', $orderObj->order_amount);
+        $data['paymentInfo'] = $paymentInfo;
         $this->render('order', $data);
     }
-    
-    public function actionDoPay(){
+
+    public function actionDoPay() {
         echo '去支付';
     }
 
