@@ -10,7 +10,7 @@ class BaseController extends CController {
     public $user;
     public $layout = '/layouts/main';
     public $data = array();
-    protected $_userI = array();
+    public $_userI = array();
 
     public function init() {
         parent::init();

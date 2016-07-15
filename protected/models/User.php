@@ -7,11 +7,14 @@
  */
 class User extends CActiveRecord {
 
+    public $balance = 0.00; //账号金额
+
     /**
      * 通过名字获取用户信息
      * @param type $userName
      * @return type
      */
+
     public function getUserByName($userName) {
         return $this->find(array(
                 'select' => array('id', 'username', 'password', 'head_ico', 'salt'),

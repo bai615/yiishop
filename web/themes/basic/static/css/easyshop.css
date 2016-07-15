@@ -4,6 +4,7 @@ a ,a:hover,a:visited,a:active{text-decoration: none;}
 ul,li{list-style-type:none}
 .bold, a.bold {font-weight: bold;}
 a.orange, .orange {color: #fe6c00;}
+.red{color:#ba0505;}
 .clear{clear: both;}
 .error{border-color: #ba0505;color: #ba0505;}
 
@@ -127,7 +128,8 @@ a.orange, .orange {color: #fe6c00;}
 /* 信息提示区 */
 .message_box{border: 1px solid #ccc;border-radius: 4px;padding: 140px 300px;text-align: center;}
 .message_box i{color: #80A930;height: 40px;font-size: 40px;vertical-align:middle;}
-.message_box .message_text{display: inline-block;height: 40px;line-height: 40px;font-size: 24px;margin-left: 5px;vertical-align:middle;}
+.message_box .message_text{display: inline-block;min-height: 40px;line-height: 40px;font-size: 24px;margin-left: 5px;vertical-align:middle;}
+.warning i{color: #E9C341;margin-right: 10px;}
 
 
 /* 用户登录区 */

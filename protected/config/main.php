@@ -22,6 +22,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
         'application.logics.*',
+        'application.payments.*',
         'application.util.*',
 	),
 
@@ -59,12 +60,26 @@ return array(
             'showScriptName'=>false,    // 将代码里链接的index.php隐藏掉。  
             'urlSuffix'=>'.html',  
 			'rules'=>array(
+                //首页
                 'index'=>array('home/index','urlSuffix'=>'.html'),
+                //登录页
                 'login'=>array('user/login','urlSuffix'=>'.html'),
+                //退出页
                 'logout'=>array('user/logout','urlSuffix'=>'.html'),
+                //注册页
                 'reg'=>array('user/register','urlSuffix'=>'.html'),
+                //详情页
                 'item_<id:\d+>'=>array('home/products','urlSuffix'=>'.html'), 
+                //成功信息页
                 'success'=>array('common/success','urlSuffix'=>'.html'),
+                //404
+                'error'=>array('common/error','urlSuffix'=>'.html'),
+                //警告
+                'warning'=>array('common/warning','urlSuffix'=>'.html'),
+                //支付同步信息返回页
+                'callback'=>array('pay/callback'),
+                //支付异步信息通知页
+                'notify'=>array('pay/notify'),
 			),
 		),
 
@@ -73,7 +88,7 @@ return array(
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
-//			'errorAction'=>'site/error',
+//			'errorAction'=>'common/error',
 		),
 
 		'log'=>array(
@@ -83,6 +98,10 @@ return array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
 				),
+                array(
+                    'class'=>'CProfileLogRoute',
+                    'levels'=>'error,warning',
+                ),
 				// uncomment the following to show log messages on web pages
 				/*
 				array(

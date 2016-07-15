@@ -86,6 +86,9 @@ class GoodsComponent extends CApplicationComponent {
          */
     }
 
+    /**
+     * 热卖商品列表
+     */
     public function getCommendHot() {
 
         $commendGoodsModel = new CommendGoods();
@@ -108,5 +111,7 @@ class GoodsComponent extends CApplicationComponent {
           'order'=>'sort asc'
          */
     }
+
+    
 
 }

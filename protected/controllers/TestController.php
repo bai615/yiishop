@@ -14,10 +14,19 @@
 class TestController extends BaseController {
 
     public function actionIndex() {
+
+        $model = new Goods();
+        $result = $model->updateCounters(array('sale' => 10), 'id=218');
+        pprint($result);
+//        $info = $model->findByPk(218);
+//        pprint($info);
+
+        exit();
+
         set_time_limit(18000);
         $goodsModel = new Goods();
         $goodsList = $goodsModel->findAll(array(
-            'select' => array('id','content'),
+            'select' => array('id', 'content'),
             'condition' => 'id > 107'
 //            'limit' => 10
         ));
