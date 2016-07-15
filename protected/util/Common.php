@@ -152,4 +152,32 @@ class Common {
         return $spec;
     }
 
+    /**
+     * 获取签名字符串，签名验证算法
+     * @param type $data
+     * @param type $skey
+     * @return type
+     */
+    public static function getSign($data = array(), $skey = '') {
+        ksort($data);
+        unset($data['sign']);
+        $strSign = '';
+        foreach ($data as $key => $value) {
+            $strSign.=$key . "=" . ($value) . "&";
+        }
+        $strSign = substr($strSign, 0, -1);
+//        $dataStr = http_build_query($data);
+        return md5($strSign . $skey);
+    }
+    
+    /**
+     * 显示警告信息
+     * @param type $message
+     */
+    public static function showWarning($message = '') {
+		$data['message'] = $message;
+		$result = Yii::app()->getController()->render('/common/warning', $data, 1);
+		die($result);
+	}
+
 }
