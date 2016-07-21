@@ -9,6 +9,7 @@ a.orange, .orange {color: #fe6c00;}
 .error{border-color: #ba0505;color: #ba0505;}
 
 .container{width: 1024px;}
+.container .breadcrumb{margin-bottom: 10px;}
 .block_box{margin-bottom: 30px;}
 /* 首页商品区分类 */
 .panel-heading ul{float: right; margin-top: -18px;}
@@ -159,3 +160,14 @@ a.orange, .orange {color: #fe6c00;}
 .user_login_box .login_form .other_login a.wb:hover {background-position: -20px -300px;}
 .user_login_box .login_form .other_login a.alpay {background-position: 0 -320px;}
 .user_login_box .login_form .other_login a.alpay:hover {background-position: -20px -320px;}
+
+/* 用户中心 */
+.ucenter_box .theme-dropdown .dropdown-menu{display: block;}
+.ucenter_box .ucenter_menu .list-group{box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);}
+/*.ucenter_box .ucenter_menu .list-group-item{border: 0px;}*/
+.ucenter_box .ucenter_menu .divider{background-color: #e5e5e5;display: block; height: 1px;margin: 9px 0; overflow: hidden;}
+.ucenter_box .ucenter_main .order_time,.ucenter_box .ucenter_main .order_amount,.ucenter_box .ucenter_main .order_status{float: right;}
+.ucenter_box .ucenter_main .order_amount{margin-right: 20px;}
+.ucenter_box .ucenter_main .order_time{margin-right: 30px;}
+.ucenter_box .ucenter_main .goods_img{width:70px;}
+.ucenter_box .ucenter_main .goods_name{font-size: 14px;width:350px;}

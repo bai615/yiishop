@@ -71,7 +71,7 @@
                         <?php
                         if ($this->_userI):
                             ?>
-                            <li><a href="<?php echo $this->createAbsoluteUrl('user/register'); ?>"><?php echo $this->_userI['userName']; ?></a></li>
+                            <li><a href="<?php echo $this->createAbsoluteUrl('ucenter/order'); ?>"><?php echo $this->_userI['userName']; ?></a></li>
                             <li><a href="<?php echo $this->createAbsoluteUrl('user/logout'); ?>">退出</a></li>
                             <?php
                         else:

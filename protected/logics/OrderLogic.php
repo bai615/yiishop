@@ -41,6 +41,7 @@ class OrderLogic {
                 $orderGoodsObj->product_id = $value['product_id'];
                 $orderGoodsObj->goods_id = $value['goods_id'];
                 $orderGoodsObj->img = $value['img'];
+                $orderGoodsObj->goods_name = $value['name'];
                 $orderGoodsObj->goods_price = $value['sell_price'];
                 $orderGoodsObj->real_price = $value['sell_price'];
                 $orderGoodsObj->goods_nums = $value['count'];
@@ -124,6 +125,7 @@ class OrderLogic {
             return $orderInfo['id'];
         } else if ($orderInfo['pay_status'] == 0) {
             //未支付
+            $orderInfo->status = ($orderInfo['status'] == 5) ? 5 : 2;
             $orderInfo->pay_time = date('Y-m-d H:i:s');
             $orderInfo->pay_status = 1;
             $is_success = $orderInfo->update();

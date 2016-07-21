@@ -1,22 +1,11 @@
 <?php
 
 /**
- * 订单商品表
+ * 退款单
  *
  * @author baihua <baihua_2011@163.com>
  */
-class OrderGoods extends CActiveRecord {
-    
-    /**
-     * 关联关系
-     * @return type
-     */
-
-    public function relations() {
-        return array(
-            'r_order' => array(self::BELONGS_TO, 'Order', 'order_id'),
-        );
-    }
+class RefundmentDoc extends CActiveRecord {
 
     /**
      * model 的静态方法
@@ -32,7 +21,7 @@ class OrderGoods extends CActiveRecord {
      * @return string
      */
     public function tableName() {
-        return '{{order_goods}}';
+        return '{{refundment_doc}}';
     }
 
 }

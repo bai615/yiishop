@@ -110,15 +110,41 @@ class UcenterController extends BaseController {
         }
         $responseUrl = substr($responseUrl, 0, -1);
         //计算要发送的md5校验
-		$urlStrMD5  = md5($responseUrl .$userId.$partnerKey);
+        $urlStrMD5 = md5($responseUrl . $userId . $partnerKey);
 
-		//拼接进返还的URL中
-		$return_url.= 'sign='.$urlStrMD5;
-    	header('location:'.$return_url);
+        //拼接进返还的URL中
+        $return_url.= 'sign=' . $urlStrMD5;
+        header('location:' . $return_url);
     }
 
+    /**
+     * 我的订单
+     */
     public function actionOrder() {
-        echo '订单中心';
+        $userId = $this->_userI['userId'];
+        $orderModel = new Order();
+        $condition = 'user_id =:userId and if_del= 0';
+        $params = array(':userId' => $userId);
+        $criteria = new CDbCriteria();
+        $criteria->condition = $condition;
+        $criteria->params = $params;
+        $criteria->order = 'id desc';
+        $criteria->with = 'r_ordergoods';
+        $count = $orderModel->count($condition, $params);
+        $page = new CPagination($count);
+        $page->pageSize = 10;
+        $page->applyLimit($criteria);
+        $orderList = $orderModel->findAll($criteria);
+        $this->render('order', array('pages' => $page, 'count' => $count, 'orderList' => $orderList));
+    }
+    
+    /**
+     * 订单详情
+     */
+    public function actionOrderDetail(){
+        $userId = $this->_userI['userId'];
+        $orderId = Yii::app()->request->getParam('id');
+        pprint($orderId);
     }
 
 }
