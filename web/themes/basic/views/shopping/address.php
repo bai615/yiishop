@@ -78,10 +78,10 @@
 <?php
 if ($addressRow):
     ?>
-            $('input[name=id]').val("<?php echo $addressRow['id'];?>");
-            $('input[name=accept_name]').val("<?php echo $addressRow['accept_name'];?>");
-            $('input[name=address]').val("<?php echo $addressRow['address'];?>");
-            $('input[name=mobile]').val("<?php echo $addressRow['mobile'];?>");
+                        $('input[name=id]').val("<?php echo $addressRow['id']; ?>");
+                        $('input[name=accept_name]').val("<?php echo $addressRow['accept_name']; ?>");
+                        $('input[name=address]').val("<?php echo $addressRow['address']; ?>");
+                        $('input[name=mobile]').val("<?php echo $addressRow['mobile']; ?>");
                         createAreaSelect('province', 0, "<?php echo $addressRow['province']; ?>");
                         createAreaSelect('city', "<?php echo $addressRow['province']; ?>", "<?php echo $addressRow['city']; ?>");
                         createAreaSelect('area', "<?php echo $addressRow['city']; ?>", "<?php echo $addressRow['area']; ?>");

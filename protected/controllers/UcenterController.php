@@ -7,6 +7,34 @@
  */
 class UcenterController extends BaseController {
 
+    public $currentMenu = 0;
+    public $menuData = array(
+        '1' => array(
+            'name' => '我的订单',
+            'url' => '/ucenter/order'
+        ),
+        '2' => array(
+            'name' => '账户余额',
+            'url' => '/ucenter/order'
+        ),
+        '3' => array(
+            'name' => '我的收藏',
+            'url' => '/ucenter/order'
+        ),
+        '4' => array(
+            'name' => '地址管理',
+            'url' => '/ucenter/order'
+        ),
+        '5' => array(
+            'name' => '个人资料',
+            'url' => '/ucenter/order'
+        ),
+        '6' => array(
+            'name' => '修改密码',
+            'url' => '/ucenter/order'
+        ),
+    );
+
     /**
      * 收货地址删除处理
      */
@@ -121,6 +149,7 @@ class UcenterController extends BaseController {
      * 我的订单
      */
     public function actionOrder() {
+        $this->currentMenu = 1;
         $userId = $this->_userI['userId'];
         $orderModel = new Order();
         $condition = 'user_id =:userId and if_del= 0';
@@ -137,14 +166,25 @@ class UcenterController extends BaseController {
         $orderList = $orderModel->findAll($criteria);
         $this->render('order', array('pages' => $page, 'count' => $count, 'orderList' => $orderList));
     }
-    
+
     /**
      * 订单详情
      */
-    public function actionOrderDetail(){
+    public function actionOrderDetail() {
+        $this->currentMenu = 1;
         $userId = $this->_userI['userId'];
         $orderId = Yii::app()->request->getParam('id');
-        pprint($orderId);
+        //订单信息
+        $orderModel = new Order();
+        $orderInfo = $orderModel->find(array(
+            'condition' => 'o.id=:orderId and user_id=:userId',
+            'params' => array(':orderId' => $orderId, ':userId' => $userId),
+            'alias' => 'o',
+            'with' => 'r_ordergoods'
+        ));
+        //地址信息
+        $areaData = Areas::name($orderInfo['province'], $orderInfo['city'], $orderInfo['area']);
+        $this->render('orderDetail', array('orderInfo' => $orderInfo, 'areaData' => $areaData));
     }
 
 }

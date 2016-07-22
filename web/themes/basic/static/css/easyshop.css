@@ -171,3 +171,8 @@ a.orange, .orange {color: #fe6c00;}
 .ucenter_box .ucenter_main .order_time{margin-right: 30px;}
 .ucenter_box .ucenter_main .goods_img{width:70px;}
 .ucenter_box .ucenter_main .goods_name{font-size: 14px;width:350px;}
+.ucenter_box .ucenter_main table{font-size: 14px;}
+.ucenter_box .ucenter_main th,.ucenter_box .ucenter_main td{border: 0px;}
+.ucenter_box .ucenter_main .accept_info th,.ucenter_box .ucenter_main .pay_info th{width: 100px;text-align: center;}
+.ucenter_box .ucenter_main .goods_detail_info th,.ucenter_box .ucenter_main .goods_detail_info td{text-align: center;}
+.ucenter_box .ucenter_main .goods_detail_info .goods_title{text-align: left;}
