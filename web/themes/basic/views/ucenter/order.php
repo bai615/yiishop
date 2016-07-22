@@ -7,13 +7,15 @@
                 if ($this->menuData):
                     foreach ($this->menuData as $key => $info):
                         ?>
-                        <a href="<?php echo $this->createAbsoluteUrl($info['url']); ?>" class="list-group-item <?php if ($key == $this->currentMenu) {
-                    echo 'active';
-                } ?>"><?php echo $info['name']; ?></a>
-                        <?php
-                    endforeach;
-                endif;
-                ?>
+                        <a href="<?php echo $this->createAbsoluteUrl($info['url']); ?>" class="list-group-item <?php
+                        if ($key == $this->currentMenu) {
+                            echo 'active';
+                        }
+                        ?>"><?php echo $info['name']; ?></a>
+                           <?php
+                       endforeach;
+                   endif;
+                   ?>
                 <!--
                 <a href="#" class="list-group-item">Link</a>
                 <a href="#" class="divider"></a>
@@ -46,16 +48,16 @@
                                                 </td>
                                                 <td class="goods_name">
                                                     <a title="<?php echo $orderGoodsInfo['goods_name']; ?>" target="_bank" href="<?php echo $this->createAbsoluteUrl('home/products', array('id' => $orderGoodsInfo['goods_id'])); ?>">
-                                                    <?php echo $orderGoodsInfo['goods_name']; ?>
+                                                        <?php echo $orderGoodsInfo['goods_name']; ?>
                                                     </a>
-                                                        <?php if (!empty($orderGoodsInfo['spec_array'])) : ?>
+                                                    <?php if (!empty($orderGoodsInfo['spec_array'])) : ?>
                                                         <p>
                                                             <?php $spec_array = Common::show_spec($orderGoodsInfo['spec_array']); ?>
                                                             <?php foreach ($spec_array as $specName => $specValue) : ?>
-                                                            <?php echo isset($specName) ? $specName : ""; ?>：<?php echo isset($specValue) ? $specValue : ""; ?> &nbsp&nbsp
-                                                        <?php endforeach; ?>
+                                                                <?php echo isset($specName) ? $specName : ""; ?>：<?php echo isset($specValue) ? $specValue : ""; ?> &nbsp&nbsp
+                                                            <?php endforeach; ?>
                                                         </p>
-                <?php endif; ?>
+                                                    <?php endif; ?>
                                                 </td>
                                                 <td><?php echo $orderGoodsInfo['goods_nums']; ?></td>
                                                 <td>￥<?php echo sprintf('%.2f', $orderGoodsInfo['real_price'] * $orderGoodsInfo['goods_nums']); ?></td>
@@ -82,8 +84,13 @@
                 'lastPageLabel' => '>>',
                 'prevPageLabel' => '<',
                 'nextPageLabel' => '>',
+                'firstPageCssClass' => '',
+                'lastPageCssClass' => '',
                 'pages' => $pages,
                 'maxButtonCount' => 5,
+                'cssFile' => false,
+                'htmlOptions' => array("class" => "pagination"),
+                'selectedPageCssClass' => "active"
             ));
             ?>
         </div>

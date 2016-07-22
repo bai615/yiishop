@@ -15,7 +15,7 @@ class UcenterController extends BaseController {
         ),
         '2' => array(
             'name' => '账户余额',
-            'url' => '/ucenter/order'
+            'url' => '/ucenter/account'
         ),
         '3' => array(
             'name' => '我的收藏',
@@ -185,6 +185,34 @@ class UcenterController extends BaseController {
         //地址信息
         $areaData = Areas::name($orderInfo['province'], $orderInfo['city'], $orderInfo['area']);
         $this->render('orderDetail', array('orderInfo' => $orderInfo, 'areaData' => $areaData));
+    }
+
+    /**
+     * 账户余额
+     */
+    public function actionAccount() {
+        $this->currentMenu = 2;
+        $userId = $this->_userI['userId'];
+        $memberModel = new Member();
+        $memberInfo = $memberModel->find(array(
+            'select' => array('user_id', 'balance'),
+            'condition' => 'user_id=:userId',
+            'params' => array(':userId' => $userId)
+        ));
+        $logModel = new AccountLog();
+        $condition = 'user_id =:userId';
+        $params = array(':userId' => $userId);
+        $criteria = new CDbCriteria();
+        $criteria->select = 'amount, amount_log, time, note';
+        $criteria->condition = $condition;
+        $criteria->params = $params;
+        $criteria->order = 'id desc';
+        $count = $logModel->count($condition, $params);
+        $page = new CPagination($count);
+        $page->pageSize = 10;
+        $page->applyLimit($criteria);
+        $logList = $logModel->findAll($criteria);
+        $this->render('account', array('pages' => $page, 'count' => $count, 'logList' => $logList, 'memberInfo' => $memberInfo));
     }
 
 }
