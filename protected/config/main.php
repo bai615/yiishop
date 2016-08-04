@@ -80,6 +80,10 @@ return array(
                 'callback'=>array('pay/callback'),
                 //支付异步信息通知页
                 'notify'=>array('pay/notify'),
+                //我的订单页
+                'myOrder'=>array('ucenter/order','urlSuffix'=>'.html'), 
+                //订单详情页
+                'detail_<id:\d+>'=>array('ucenter/orderDetail','urlSuffix'=>'.html'), 
 			),
 		),
 
@@ -98,10 +102,10 @@ return array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
 				),
-                array(
-                    'class'=>'CProfileLogRoute',
-                    'levels'=>'error,warning',
-                ),
+//                array(
+//                    'class'=>'CProfileLogRoute',
+//                    'levels'=>'error,warning',
+//                ),
 				// uncomment the following to show log messages on web pages
 				/*
 				array(
