@@ -149,6 +149,7 @@ class UcenterController extends BaseController {
      * 我的订单
      */
     public function actionOrder() {
+        $this->is_login();
         $this->currentMenu = 1;
         $userId = $this->_userI['userId'];
         $orderModel = new Order();
@@ -171,6 +172,7 @@ class UcenterController extends BaseController {
      * 订单详情
      */
     public function actionOrderDetail() {
+        $this->is_login();
         $this->currentMenu = 1;
         $userId = $this->_userI['userId'];
         $orderId = Yii::app()->request->getParam('id');
@@ -191,6 +193,7 @@ class UcenterController extends BaseController {
      * 账户余额
      */
     public function actionAccount() {
+        $this->is_login();
         $this->currentMenu = 2;
         $userId = $this->_userI['userId'];
         $memberModel = new Member();
