@@ -46,6 +46,17 @@ class Payment extends CActiveRecord {
                 'order' => '`order` asc'
         ));
     }
+    
+    /**
+     * 线上充值的支付方式
+     * @return type
+     */
+    public static function getPaymentListByOnline(){
+        return self::model()->findAll(array(
+                'condition' => " type = 1 and status = 0 and class_name not in ('BalancePay') and client_type in(1,3)",
+                'order' => '`order` asc'
+        ));
+    }
 
     /**
      * model 的静态方法
