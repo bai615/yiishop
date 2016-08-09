@@ -29,11 +29,11 @@ $(function () {
             var goodsId = $("#goods_id").val();
             $.post(get_product_url, {"goods_id": goodsId, "specJSON": specJSON, "random": Math.random}, function (data) {
                 if (data.flag === 'success') {
-                    $("#real_price").html('￥'+data.info.sell_price);
+                    $("#real_price").html('￥' + data.info.sell_price);
                     $("#goods_no").html(data.info.products_no);
-                    $("#market_price").html('￥'+data.info.market_price);
+                    $("#market_price").html('￥' + data.info.market_price);
                     $("#store_nums").html(data.info.store_nums);
-                    $("#weight").html(data.info.weight+'g');
+                    $("#weight").html(data.info.weight + 'g');
                     $("#product_id").val(data.info.id);
                 }
             }, 'json')
@@ -112,4 +112,19 @@ function buy_now(id) {
     buy_now_url += '?id=' + id + '&num=' + buy_num + '&type=' + type;
     //页面跳转
     window.location.href = buy_now_url;
+}
+
+//添加收藏
+function favorite_add(obj) {
+    $.getJSON(favorite_url, {'goods_id': goods_id, 'random': Math.random}, function (content)
+    {
+        
+        if (0 === content.errCode) {
+            $(".favorite span").html('已收藏');
+            $(".favorite i").removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            alert(content.errMsg);
+            
+        }
+        
+    });
 }

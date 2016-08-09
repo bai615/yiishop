@@ -75,6 +75,8 @@ a.orange, .orange {color: #fe6c00;}
 .goods_info .goods_current .resize a {background: rgba(0, 0, 0, 0) url("../images/sprites.gif") no-repeat scroll 0px 0px;border: 1px solid #b4b4b4;display: block;height: 7px;margin-bottom: 4px;overflow: hidden;width: 16px;} 
 .goods_info .goods_current .resize a.reduce{background-position: 0px -7px;}
 .goods_info .goods_current i{font-style: normal;}
+.goods_info .favorite{display: inline-block;height: 14px;line-height: 14px;margin-left: 35px;padding: 2px 0 2px 22px;color:#000;}
+.goods_info .favorite i{color: #FBA627;}
 
 /* 热卖商品区 */
 .goods_hots_box{width: 234px;float: left;}

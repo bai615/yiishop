@@ -142,4 +142,37 @@ class HomeController extends BaseController {
         }
     }
 
+    /**
+     * 添加到收藏
+     */
+    public function actionFavoriteAdd() {
+        $userId = $this->_userI['userId'];
+        $goodsId = Yii::app()->request->getParam('goods_id');
+        if (empty($goodsId)) {
+            $errCode = 1;
+            $message = '商品id值不能为空';
+        } else if (empty($this->_userI)) {
+            $errCode = 2;
+            $message = '请先登录';
+        } else {
+            $favoriteModel = new Favorite();
+            $favoriteInfo = $favoriteModel->find(array(
+                'condition' => 'user_id=:userId and rid=:goodsId',
+                'params' => array(':userId' => $userId, ':goodsId' => $goodsId)
+            ));
+            if ($favoriteInfo) {
+                $errCode = 3;
+                $message = '您已经收藏过此件商品';
+            } else {
+                $favoriteModel->user_id = $userId;
+                $favoriteModel->rid = $goodsId;
+                $favoriteModel->time = date('Y-m-d H:i:s');
+                $favoriteModel->save();
+                $errCode = 0;
+                $message = '收藏成功';
+            }
+        }
+        echo (json_encode(array('errCode' => $errCode, 'errMsg' => $message)));
+    }
+
 }

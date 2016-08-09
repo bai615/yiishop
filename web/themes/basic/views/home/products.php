@@ -67,7 +67,10 @@
                         ?>
                     </s>
                 </li>
-                <li>库存：现货<span>(<label id="store_nums"><?php echo $goodsInfo['store_nums']; ?></label>)</span></li>
+                <li>
+                    库存：现货<span>(<label id="store_nums"><?php echo $goodsInfo['store_nums']; ?></label>)</span>
+                    <a class="favorite" onclick="favorite_add(this);" href="javascript:void(0)"><i class="glyphicon glyphicon-star-empty"></i><span>收藏此商品</span></a>
+                </li>
                 <li>顾客评分：<span class="goods_grade"><i style="width:<?php echo Common::gradeWidth($goodsInfo['grade'], $goodsInfo['comments']); ?>px;"></i></span> (已有<?php echo $goodsInfo['comments']; ?>人评价)</li>
                 <li>配送至：</li>
             </ul>
@@ -222,7 +225,9 @@
 </div>
 
 <script type="text/javascript">
+    var goods_id = '<?php echo $goodsInfo['id'];?>';
     var get_product_url = "<?php echo $this->createAbsoluteUrl('home/getProduct'); ?>";
+    var favorite_url = "<?php echo $this->createAbsoluteUrl('home/favoriteAdd'); ?>";
 </script>
 <script src="<?php echo $this->data['js_url']; ?>/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="<?php echo $this->data['js_url']; ?>/jqueryzoom.js" type="text/javascript"></script>
